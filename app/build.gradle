@@ -8,13 +8,32 @@ android {
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
+
+        resConfigs "zh", "zh-rCN"
+
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
+    signingConfigs {
+        test123 {
+            storeFile file("keystore/test.key")
+            storePassword "123456"
+            keyAlias "test"
+            keyPassword "123456"
+        }
+    }
+
     buildTypes {
         release {
+            signingConfig signingConfigs.test123
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 }
 
